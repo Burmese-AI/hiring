@@ -1,4 +1,4 @@
-# **Junior Data Engineer Task: Scalable LLM Training Data Pipeline**  
+# Junior Data Engineer Task: Scalable Data Pipeline**  
 
 **Domain:** Large-Scale Data Processing  
 **Expected Time:** 8–16 Hours  
