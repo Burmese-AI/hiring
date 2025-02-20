@@ -1,83 +1,85 @@
-# Junior Data Engineer Task: LLM Training Data Pipeline  
+# **Junior Data Engineer Task: Scalable LLM Training Data Pipeline**  
 
-**Domain:** Text Data Processing Platform
-**Expected Time:** 8–16 Hours
-
----
-
-## Objective  
-
-Build a **scalable data pipeline** to ingest, clean, and validate unstructured text data for machine learning workflows. Demonstrate proficiency with Python/SQL, Docker, and IaC (Terraform).
+**Domain:** Large-Scale Data Processing  
+**Expected Time:** 8–16 Hours  
 
 ---
 
-## Requirements  
+## **Objective**  
 
-### 1. Data Ingestion & Transformation  
-
-- Create a Python script to:
-  - Read 1000+ sample text documents (`.txt` files) from a directory.  
-    - You may also use text documents from HuggingFace.
-  - **Clean data**: Remove special characters, normalize whitespace, filter out short/low-quality text.
-  - Split text into chunks (max 512 tokens) using a tokenizer of your choice. (Please explain why you chose this tokenizer in the README.)
-
-### 2. SQL Metadata Management  
-
-- Design a PostgreSQL table to track:  
-  - Chunked text content  
-  - Source file metadata (file name, chunk ID, quality score)  
-  - Processing timestamps  
-- Use SQLAlchemy or Django ORM to insert cleaned data into the table.  
-
-### 3. Infrastructure as Code (IaC)  
-
-- Write a Terraform script to provision:  
-  - A cloud storage bucket (AWS S3/GCP Cloud Storage) for raw text files.  
-  - A managed PostgreSQL instance (e.g., AWS RDS, GCP Cloud SQL).  
-- Dockerize the pipeline (create a `Dockerfile` to run your Python script).  
-
-### 4. Data Quality Checks  
-
-- Add validation rules:  
-  - Reject chunks with >30% non-alphanumeric characters.  
-  - Flag chunks containing PII-like patterns (e.g., mock credit card numbers).  
+Develop a **scalable and efficient data pipeline** that collects, processes, and stores unstructured text data. The task will test your ability to handle data ingestion, transformation, storage, and infrastructure automation.  
 
 ---
 
-## AI Collaboration Rules  
+## **Requirements**  
 
-- **Allowed**:  
-  - Use AI for boilerplate code (e.g., Terraform templates, Dockerfile setup).  
-- **Required**:  
-  - Core data-cleaning logic and SQL schema design **must be your own work**.  
-  - Add code comments explaining *why* you chose specific cleaning/validation rules.
+### **1. Data Ingestion & Processing**  
+
+- Implement a Python-based data pipeline that:  
+  - Downloads text datasets from an open-source repository (e.g., Hugging Face, Common Crawl, or Wikipedia dumps).  
+  - Performs text **preprocessing & cleaning**, including:  
+    - Lowercasing, punctuation normalization, and whitespace correction.  
+    - Deduplication of repetitive content.  
+    - Filtering out low-quality text (e.g., gibberish, extremely short passages).  
+  - Chunks the text into **max 512-token segments** using a tokenizer.  
+  - Calculates **basic NLP statistics** (e.g., token count, sentence length distribution).  
+
+### **2. Database & Query Optimization**  
+
+- Store processed text in **PostgreSQL** with:  
+  - A well-designed table schema for **fast retrieval and analytics**.  
+  - Efficient indexing strategies to support large-scale text queries.  
+- Use **SQLAlchemy** or **Pydantic** for ORM-based database interactions.  
+
+### **3. Infrastructure as Code (IaC) & Deployment**  
+
+- Write a **Terraform** script to provision:  
+  - A **cloud storage bucket** (AWS S3 or GCP Cloud Storage) for raw and processed text.  
+  - A **PostgreSQL database** (AWS RDS or GCP Cloud SQL).  
+- Dockerize the pipeline with a **Dockerfile** to ensure reproducibility.  
+
+### **4. Advanced Data Quality Checks**  
+
+- Implement **automated validation rules**, including:  
+  - Rejecting text with **>30% non-alphanumeric content**.  
+  - Flagging **potentially sensitive information** (e.g., email addresses, phone numbers).  
+  - Checking for **data duplication** across different sources.  
 
 ---
 
-## Deliverables  
+## **Collaboration Rules**  
 
-1. GitHub repo containing:  
-   - Python data pipeline code  
-   - Terraform scripts + Dockerfile  
-   - Sample text data (or script to generate mock data)  
-2. `README.md` with:  
-   - Architecture diagram of your pipeline  
-   - Instructions to deploy infrastructure + run the pipeline  
-   - **Data quality report** (sample stats: % chunks filtered, avg token count)  
+- You may use AI text editors like Cursor, Windsurf, Trae, etc. for **boilerplate code** (e.g., Terraform/Docker setup).  
+- Core **data-cleaning logic, database design, and validation rules** must be your own work.  
+- Add **clear comments** explaining the rationale behind major design choices.  
 
 ---
 
-## Bonus (Optional)  
+## **Deliverables**  
 
-1. Add Airflow DAGs to schedule pipeline runs.  
-2. Implement data lineage tracking (e.g., log transformations in a metadata table).  
-3. Build a simple dashboard (Plotly/Streamlit) showing dataset statistics.  
+1. **GitHub repository** containing:  
+   - Python data pipeline code.  
+   - Terraform scripts + Dockerfile.  
+   - Sample text dataset (or script to generate mock data).  
+2. **README.md** with:  
+   - Pipeline architecture diagram.  
+   - Deployment instructions.  
+   - **Data quality report** (e.g., % filtered data, error logs).  
 
 ---
 
-## Evaluation Criteria  
+## **Bonus (Optional, for extra points)**  
 
-- **Data Quality**: Cleaned chunks meet token/formatting requirements.  
-- **SQL Efficiency**: Schema design optimizes for text search/analytics.  
-- **IaC Best Practices**: Terraform scripts are modular/reusable.  
-- **Pipeline Reproducibility**: Docker setup works out-of-the-box.  
+1. Implement an **Airflow DAG** for scheduled pipeline runs.  
+2. Add a **data validation step** using Great Expectations or Pandas Profiling.  
+3. Optimize database queries for **full-text search** (e.g., using `GIN` indexes).  
+4. Deploy a **basic Streamlit dashboard** to visualize dataset statistics.  
+
+---
+
+## **Evaluation Criteria**  
+
+- **Data Processing**: Cleaned text meets quality standards.  
+- **SQL & Performance**: Efficient schema & indexing strategies.  
+- **IaC & Deployment**: Terraform scripts are modular & reusable.  
+- **Code Reproducibility**: Docker setup works without issues.  
